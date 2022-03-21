@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Verleih Ansicht</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 
 <body>

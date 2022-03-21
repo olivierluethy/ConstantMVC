@@ -2,14 +2,15 @@
 require 'core/bootstrap.php';
 
 $routes = [
-	'credit/view' => 'CreditController@refresh',
-	'credit/create' => 'CreditController@create',
-	'credit/update' => 'CreditController@update',
-	'credit/sync' => 'CreditController@sync',
+	'' => 'FrameworkController@refresh',
+	'view' => 'FrameworkController@refresh',
+	'create' => 'FrameworkController@create',
+	'update' => 'FrameworkController@update',
+	'sync' => 'FrameworkController@sync',
 ];
 
 $db = [
-	'name'     => 'kreditfirma',
+	'name'     => 'framework',
 	'username' => 'root',
 	'password' => '',
 ];

@@ -1,6 +1,6 @@
 <?php
 
-class CreditController{
+class FrameworkController{
     public function refresh(){
         $pdo = connectDatabase();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -33,7 +33,7 @@ class CreditController{
             $statement->bindParam(':fk_kreditpaketID', $creditPackage, PDO::PARAM_STR);
             $statement->execute();
 
-            header('Location: http://localhost/uek_projektarbeit/credit/view'); // Besser: header('Location: http://localhost/deinProjekt/task);
+            header('Location: http://localhost/Framework/view'); // Besser: header('Location: http://localhost/deinProjekt/task);
         }
 
         require 'app/Views/createCredit.view.php';

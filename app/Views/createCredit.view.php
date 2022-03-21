@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form action="create" method="post">
+    <form action="create" method="POST">
         <fieldset>
             <legend>Personal Daten</legend>
 
@@ -30,7 +30,7 @@
         </fieldset>
         <button type="submit" name="form-submit">Kreditverleih erfassen</button>
     </form>
-    <script src="../public/js/clientSideValidation.js"></script>
+    <script src="public/js/clientSideValidation.js"></script>
     <script>
         window.addEventListener("load", function() {
             document.querySelector('#raten').addEventListener('change', function(evt) {

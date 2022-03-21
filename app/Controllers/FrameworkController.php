@@ -33,7 +33,7 @@ class FrameworkController{
             $statement->bindParam(':fk_kreditpaketID', $creditPackage, PDO::PARAM_STR);
             $statement->execute();
 
-            header('Location: http://localhost/Framework/view'); // Besser: header('Location: http://localhost/deinProjekt/task);
+            header('Location: http://localhost/Constant_Framework/view'); // Besser: header('Location: http://localhost/deinProjekt/task);
         }
 
         require 'app/Views/createCredit.view.php';
@@ -65,7 +65,7 @@ class FrameworkController{
             $statement->execute();
             // var_dump($statement);
             // var_dump($_POST);
-            header('Location: http://localhost/uek_projektarbeit/credit/view');
+            header('Location: http://localhost/Constant_Framework/view');
         }else{
         $statement = $pdo->prepare('SELECT * FROM verleihe WHERE verleihID = :id');
         $statement->bindParam(':id', $id);

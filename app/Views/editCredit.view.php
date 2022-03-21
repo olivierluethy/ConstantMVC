@@ -3,21 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../assets/favicon.ico">
     <title>Verleih Bearbeitung</title>
 </head>
 
 <body>
-    <form action="update?id=<?= $credit[0][0] ?>" method="post">
+    <form action="update?id=<?= $credit[0][0] ?>" method="POST">
         <fieldset>
             <legend>Personal Daten</legend>
             <label for="Name">Name:</label>
-            <input type="text" name="name" value="<?= $credit[0][1] ?>"><br><br>
+            <input type="text" name="name" id="name" value="<?= $credit[0][1] ?>" require><br><br>
 
             <label for="email">Email:</label>
-            <input type="text" name="email" value="<?= $credit[0][2] ?>"><br><br>
+            <input type="text" name="email" id="email" value="<?= $credit[0][2] ?>" require><br><br>
 
             <label for="telefon">Telefon:</label>
-            <input type="text" name="telefon" value="<?= $credit[0][3] ?>"><br><br>
+            <input type="text" name="telefon" id="telefon" value="<?= $credit[0][3] ?>" require><br><br>
 
         </fieldset>
         <fieldset>
@@ -31,7 +35,7 @@
         </fieldset>
         <button type="submit" name="form-submit">Verleih bearbeiten</button>
     </form>
-    <script src="../public/js/clientSideValidation.js"></script>
+    <script src="public/js/clientSideValidation.js"></script>
 </body>
 
 </html>

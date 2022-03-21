@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="shortcut icon" href="assets/favicon.ico">
     <title>Verleih Erfassung</title>
 </head>
 
 <body>
+
+    <?php
+    include("nav.view.php");
+    ?>
+
     <form action="create" method="POST">
         <fieldset>
             <legend>Personal Daten</legend>
@@ -36,13 +41,13 @@
     </form>
     <script src="public/js/clientSideValidation.js"></script>
     <script>
-        window.addEventListener("load", function() {
-            document.querySelector('#raten').addEventListener('change', function(evt) {
-                const timeElapsed = Date.now() + ((document.getElementById("raten").value * 15) * 86400000);
-                const date = new Date(timeElapsed).toLocaleDateString();
-                document.getElementById("returnDate").textContent = ("Rückzahlungsdatum: " + date);
-            });
+    window.addEventListener("load", function() {
+        document.querySelector('#raten').addEventListener('change', function(evt) {
+            const timeElapsed = Date.now() + ((document.getElementById("raten").value * 15) * 86400000);
+            const date = new Date(timeElapsed).toLocaleDateString();
+            document.getElementById("returnDate").textContent = ("Rückzahlungsdatum: " + date);
         });
+    });
     </script>
 </body>
 

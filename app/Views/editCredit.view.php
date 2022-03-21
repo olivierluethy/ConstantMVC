@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="shortcut icon" href="assets/favicon.ico">
     <title>Verleih Bearbeitung</title>
 </head>
 
 <body>
+
+    <?php
+    include("nav.view.php");
+    ?>
+
     <form action="update?id=<?= $credit[0][0] ?>" method="POST">
         <fieldset>
             <legend>Personal Daten</legend>

@@ -8,32 +8,18 @@ class Framework
         $this->db = connectDatabase();
     }
 
-    public function create($name, $email, $telefon, $raten, $creditPackage)
+    public function create($name, $vorname, $email)
     {
         $isValid = true;
         $name = htmlspecialchars($_POST['name']);
+        $vorname = htmlspecialchars($_POST['vorname']);
         $email = htmlspecialchars($_POST['email']);
         if (strpos($email, "@") === false) {
             $isValid = false;
         }
 
-        $telefon = htmlspecialchars($_POST['telefon']);
-        if (preg_match("[^0-9\/()\+\-\s]", $telefon) !== 0) {
-            $isValid = false;
-        }
-
-        $raten = htmlspecialchars($_POST['raten']);
-        if ($raten < 1 || $raten > 10) {
-            $isValid = false;
-        }
-
-        $creditPackage = htmlspecialchars($_POST['creditPackage']);
-        if ($creditPackage < 1 || $creditPackage > 40) {
-            $isValid = false;
-        }
-
         if ($isValid) {
-            $statement = $this->db->prepare("INSERT INTO `verleihe` (name, email, telefon, anzahl_raten, fk_kreditpaketID, created_at) VALUES 
+            $statement = $this->db->prepare("INSERT INTO `Personen` (name, email, telefon, anzahl_raten, fk_kreditpaketID, created_at) VALUES 
         (:name, :email, :telefon, :anzahl_raten, :fk_kreditpaketID, :created_at)");
             $statement->bindParam(':name', $name, PDO::PARAM_STR);
             $statement->bindParam(':email', $email, PDO::PARAM_STR);
@@ -46,7 +32,7 @@ class Framework
         return $isValid;
     }
 
-    public function update($name, $email, $telefon, $kredit_packet, $verleih_status, $id)
+    public function update($name, $vorname, $email, $id)
     {
         $isValid = true;
         $name = htmlspecialchars($_POST['name']);
@@ -84,9 +70,9 @@ class Framework
         return $isValid;
     }
 
-    public function sync($id)
+    public function delete($id)
     {
-        $statement = $this->db->prepare('UPDATE `verleihe` SET verleih_status=1 WHERE verleihID = :id');
+        $statement = $this->db->prepare('DELETE `Person` SET verleih_status=1 WHERE verleihID = :id');
         $statement->bindParam(':id', $id);
         $statement->execute();
     }

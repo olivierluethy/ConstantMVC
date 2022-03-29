@@ -70,6 +70,10 @@ body td a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
+body footer {
+  background-color: aqua;
+  text-align: center;
+}
 
 button {
   padding: 20px;

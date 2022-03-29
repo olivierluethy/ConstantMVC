@@ -2,11 +2,11 @@
 require 'core/bootstrap.php';
 
 $routes = [
-	'' => 'FrameworkController@refresh',
-	'view' => 'FrameworkController@refresh',
+	'' => 'FrameworkController@index',
+	'view' => 'FrameworkController@index',
 	'create' => 'FrameworkController@create',
 	'update' => 'FrameworkController@update',
-	'sync' => 'FrameworkController@sync',
+	'delete' => 'FrameworkController@delete',
 ];
 
 $db = [

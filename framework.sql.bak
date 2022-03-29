@@ -6,7 +6,7 @@ USE framework;
 -- Tabelle 'Data'
 --
 
-CREATE TABLE Person (
+CREATE TABLE creditpackages (
   id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   vorname VARCHAR(255) NOT NULL,

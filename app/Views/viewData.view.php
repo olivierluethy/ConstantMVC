@@ -20,13 +20,13 @@ foreach ($daten as $data){
 </head>
 
 <body>
-
     <?php
     include("nav.view.php");
     ?>
+    <main>
 
-    <h1>Daten</h1>
-    <?php
+        <h1>Daten</h1>
+        <?php
     if($dataCounter > 0){
         echo "
         <table>
@@ -54,7 +54,9 @@ foreach ($daten as $data){
         echo "<h1 style='color: red';>Es wurden noch keine Daten erfasst</h1>";
     }?>
 
-    <a href="create"><button>Daten hinzufügen</button></a>
+        <a href="create"><button>Daten hinzufügen</button></a>
+
+    </main>
 
     <?php
     include("footer.view.php");

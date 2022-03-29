@@ -2,17 +2,18 @@
 
 class FrameworkController{
     public function index(){
+        $Data = new Framework();
         $pdo = connectDatabase();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $statement = $pdo->prepare('SELECT * FROM Person');
-        $statement->execute();
-        $daten = $statement->fetchAll();
+        $daten = $Data -> index();
+        $daten = $daten -> fetchAll();
 
         require 'app/Views/viewData.view.php';
     }
 
     public function create(){
+        $Data = new Framework();
         $pdo = connectDatabase();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,12 +21,7 @@ class FrameworkController{
             $vorname = $_POST['vorname'];
             $email = $_POST['email'];
 
-            $statement = $pdo->prepare("INSERT INTO `Person` (name, vorname, email) VALUES 
-            (:name, :vorname, :email)");
-            $statement->bindParam(':name', $name, PDO::PARAM_STR);
-            $statement->bindParam(':vorname', $vorname, PDO::PARAM_STR);
-            $statement->bindParam(':email', $email, PDO::PARAM_STR);
-            $statement->execute();
+            $Data -> create($name, $vorname, $email);
 
             header('Location: http://localhost/Constant_Framework/');
         }
@@ -34,6 +30,7 @@ class FrameworkController{
     }
 
     public function update(){
+        $Data = new Framework();
         $id = $_GET['id'];
 
         $pdo = connectDatabase();
@@ -44,14 +41,8 @@ class FrameworkController{
             $vorname = $_POST['vorname'];
             $email = $_POST['email'];
 
-            $statement = $pdo->prepare('UPDATE `Person` SET name = :name, vorname = :vorname, email = :email WHERE id = :id');
-            $statement->bindParam(':name', $name, PDO::PARAM_STR);
-            $statement->bindParam(':vorname', $vorname, PDO::PARAM_STR);
-            $statement->bindParam(':email', $email, PDO::PARAM_STR);
-            $statement->bindParam(':id', $id, PDO::PARAM_STR);
-            $statement->execute();
-            // var_dump($statement);
-            // var_dump($_POST);
+            $Data -> update($name, $vorname, $email, $id);
+            
             header('Location: http://localhost/Constant_Framework/');
         }else{
             $statement = $pdo->prepare('SELECT * FROM Person WHERE id = :id');
@@ -63,16 +54,14 @@ class FrameworkController{
     }
 
     public function delete(){
+        $Data = new Framework();
         $id = $_GET['id'];
 
         $pdo = connectDatabase();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $statement = $pdo->prepare('DELETE FROM `Person` WHERE id = :id');
-        $statement->bindParam(':id', $id, PDO::PARAM_STR);
-        $statement->execute();
-        // var_dump($statement);
-        // var_dump($_POST);
+        $Data -> delete($id);
+
         header('Location: http://localhost/Constant_Framework/');
     }
 }

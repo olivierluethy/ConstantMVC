@@ -37,12 +37,10 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
 Since I was on a inter-company course for PHP and MVC, I've used it every time. But it cost me so much time, to build everything up very fast from scratch. So I've decided to create this framework, where I can copy it and use it directly for my next project. Now I don't need to start from 0%!
 
 <!-- INSTALLATION -->
 ## Installation Guide
-
 1. At first you need to install git on your local computer. For that you need to go to this [website](https://git-scm.com/downloads).
 2. Go to your windows explorer and search for a good place for storing this project
 3. Now right click on your folder or place and then click on "Git Bash Here"
@@ -55,3 +53,6 @@ Since I was on a inter-company course for PHP and MVC, I've used it every time. 
 ```sh
 http://localhost/Constant_Framework/
 ```
+
+<!-- DOCUMENTATION -->
+The documentation for this framework you can find in the <strong>doc<strong> folder!

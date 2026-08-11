@@ -1,71 +1,64 @@
 <?php
+/**
+ * =============================================================================
+ * CONSTANT Framework — Router
+ * =============================================================================
+ *
+ * The router is the traffic controller of the MVC flow. Every request has
+ * already been rewritten by .htaccess into index.php?url=<path>. The router
+ * takes that <path>, looks it up in the routes table (defined in index.php),
+ * and calls the matching "Controller@method".
+ *
+ * REQUEST FLOW:  browser → .htaccess → index.php → Router → Controller → Model → View
+ */
 
-class Router
+final class Router
 {
-    /**
-     * Enthält alle definierten Routes.
-     */
-    protected array $routes = [];
+    /** The routes table: 'url' => 'ControllerName@methodName'. */
+    private array $routes = [];
 
-    /**
-     * Initialisiert die definierten Routes.
-     */
     public function __construct(array $routes)
     {
-        array_walk($routes, function ($value, $key) {
-            // Normalisiere alle definierten Routes.
-            $this->routes[$this->cleanUrl($key)] = $value;    
-        });
+        // Normalise every route key once, so lookups are predictable.
+        foreach ($routes as $url => $action) {
+            $this->routes[$this->clean($url)] = $action;
+        }
     }
 
     /**
-     * Führt die Controller-Action für eine URL aus.
+     * Match the requested URL to a route and run its controller action.
      */
-    public function run(string $url)
+    public function run(string $url): mixed
     {
-        $url = $this->cleanUrl($url);
+        $url = $this->clean($url);
 
-        if ( ! array_key_exists($url, $this->routes)) {
+        if (!array_key_exists($url, $this->routes)) {
             http_response_code(404);
-            die('Keine Route für diese URL gefunden.');
+            exit('404 — no route defined for this URL.');
         }
 
-        // Teile die Definition in Controller- und Methoden-Namen auf.
+        // Split "PersonController@index" into the class and the method.
         [$controller, $method] = explode('@', $this->routes[$url]);
-        if ( ! $controller || ! $method) {
-            http_response_code(500);
-            die('Route-Actions müssen im Format "Controller@Methode" definiert sein.');
-        }
 
-        // Stelle sicher, dass die definierte Controller-Datei existiert.
-        $path = __DIR__ . "/../app/Controllers/$controller.php";
-        if ( ! file_exists($path)) {
+        // Load the controller file from app/Controllers/.
+        $path = __DIR__ . "/../app/Controllers/{$controller}.php";
+        if (!file_exists($path)) {
             http_response_code(500);
-            die("Controller '$controller' existiert nicht");
+            exit("Controller '{$controller}' does not exist.");
         }
-
-        // Lade die Controller-Datei.
         require_once $path;
 
-        if ( ! class_exists($controller)) {
+        if (!class_exists($controller) || !method_exists($controller, $method)) {
             http_response_code(500);
-            die("Controller '$controller' ist keine gültige Klasse");
+            exit("Route action '{$controller}@{$method}' is not callable.");
         }
 
-        // Überprüfe, ob die definierte Methode existiert. Wenn ja, rufe sie auf.
-        $handler = new $controller;
-        if ( ! method_exists($controller, $method)) {
-            http_response_code(500);
-            die("Methode '$controller@$method' existiert nicht");
-        }
-
-        return $handler->$method();
+        // Hand control to the controller — the "C" in MVC takes over from here.
+        return (new $controller())->$method();
     }
 
-    /**
-     * Entfernt / am Anfang und Ende eines Strings, konvertiert einen String zu Kleinbuchstaben.
-     */
-    protected function cleanUrl(string $url) : string
+    /** Trim slashes and lower-case a URL so "/Create/" and "create" match. */
+    private function clean(string $url): string
     {
         return strtolower(trim($url, '/'));
     }

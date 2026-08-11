@@ -75,6 +75,12 @@ $reopen = $submissionErrors ? ($hadEditId ? 'edit' : 'add') : '';
                         <?php
                         // Only the editable Schema fields, JSON-encoded for the Edit modal.
                         $editable = array_intersect_key($person, array_flip(Schema::fieldNames()));
+                        // A human label for the delete prompt, built from the Schema fields
+                        // (no column name is hardcoded here — rename-safe).
+                        $rowLabel = trim(implode(' ', array_map(
+                            fn ($f) => (string) ($person[$f] ?? ''),
+                            Schema::fieldNames()
+                        )));
                         ?>
                         <tr class="border-b border-edge/60 transition last:border-0 hover:bg-white/5">
                             <?php foreach (Schema::fieldNames() as $field): ?>
@@ -92,7 +98,7 @@ $reopen = $submissionErrors ? ($hadEditId ? 'edit' : 'add') : '';
                                         class="rounded-md px-2.5 py-1 text-xs font-medium text-rose-400 transition hover:bg-rose-500/10"
                                         data-delete
                                         data-id="<?= (int) $person[Schema::PRIMARY_KEY] ?>"
-                                        data-label="<?= e(trim(($person['first_name'] ?? '') . ' ' . ($person['last_name'] ?? ''))) ?>">Delete</button>
+                                        data-label="<?= e($rowLabel) ?>">Delete</button>
                                 </div>
                             </td>
                         </tr>

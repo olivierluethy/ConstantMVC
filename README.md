@@ -1,58 +1,180 @@
-<!-- PROJECT LOGO -->
-<br />
 <p align="center">
-  <a href="http://192.168.100.57:3000/Olivier_Luethy/Constant_Framework.git">
-    <img src="assets/favicon.ico" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Constant-Framework</h3>
-  <h4 align="center">A framework to create fast and easy a website that uses a database with PHP and MVC</h4>
-
-  <p align="center">
-    Here I'll explain how the framework works
-    <br />
-    <a href="http://192.168.100.57:3000/Olivier_Luethy/Constant_Framework.git/README.md"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="http://192.168.100.57:3000/Olivier_Luethy/Constant_Framework.git">View Demo</a>
-    ·
-    <a href="http://192.168.100.57:3000/Olivier_Luethy/Constant_Framework.git/issues">Report Bug</a>
-    ·
-    <a href="http://192.168.100.57:3000/Olivier_Luethy/Constant_Framework.git/issues">Request Feature</a>
-  </p>
+  <img src="assets/logo.svg" alt="CONSTANT Framework" width="72" height="72">
 </p>
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#installation-guide">Installation Guide</a>
-    </li>
-  </ol>
-</details>
+<h1 align="center">CONSTANT Framework</h1>
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
-Since I was on a inter-company course for PHP and MVC, I've used it every time. But it cost me so much time, to build everything up very fast from scratch. So I've decided to create this framework, where I can copy it and use it directly for my next project. Now I don't need to start from 0%!
+<p align="center">
+  A tiny PHP MVC framework with Add / Edit / Delete built in — so you can start a
+  database-backed website in minutes, and learn how MVC fits together while you do.
+</p>
 
-<!-- INSTALLATION -->
-## Installation Guide
-1. At first you need to install git on your local computer. For that you need to go to this [website](https://git-scm.com/downloads).
-2. Go to your windows explorer and search for a good place for storing this project
-3. Now right click on your folder or place and then click on "Git Bash Here"
-4. Finally you will see something opened up like the windows command prompt. If you do you only have to enter this
-   ```sh
-   git clone http://192.168.100.57:3000/Olivier_Luethy/Constant_Framework.git
-   ```
-5. When you successfully cloned the project, you will need a local database. I used [XAMPP](https://www.apachefriends.org/de/index.html). If you want to use it too, then please make sure you download the latest version of it. Otherwise it doesn't mite work as expected.
-6. If you have installed everything properly you can run the projects within the web browser by tipping in this command:
-```sh
-http://localhost/Constant_Framework/
+---
+
+## Table of Contents
+
+1. [About the project](#about-the-project)
+2. [Core idea: one single source of truth](#core-idea-one-single-source-of-truth)
+3. [How a request flows (the MVC tour)](#how-a-request-flows-the-mvc-tour)
+4. [Installation](#installation)
+5. [Using the app](#using-the-app)
+6. [How to extend it for your own project](#how-to-extend-it-for-your-own-project)
+7. [Project structure](#project-structure)
+
+---
+
+## About the project
+
+This framework was born out of a PHP & MVC course. Every new project started the
+same way: rebuilding the same scaffolding from scratch — routing, a database
+connection, a table with add/edit/delete — before any real work could begin. That
+was slow and repetitive.
+
+CONSTANT Framework is the answer: **copy it, point it at a database, and start
+building.** The add/edit/delete system is already wired up. It doubles as a
+teaching scaffold — the code is written to be read, so a newcomer can open it and
+see exactly how the Model, View and Controller pieces connect.
+
+## Core idea: one single source of truth
+
+The framework has one rule above all others: **every piece of information is
+defined in exactly one place.**
+
+| What | Defined once in | Used everywhere via |
+| --- | --- | --- |
+| Database connection (host, name, user, password) | `config/config.php` | `core/Database.php` |
+| Table name, columns, validation rules | `config/Schema.php` | model, views, validator, installer |
+
+So renaming a column is a **one-line change** in `config/Schema.php`. Run
+`php bin/setup.php` to apply it to the database, and the model's SQL, the table
+headers, the form inputs and the validation all update themselves — because they
+all read the same definition. Nothing to hunt down, nothing left out of sync.
+
+## How a request flows (the MVC tour)
+
+```
+Browser
+   │  every URL is rewritten by .htaccess to →
+index.php ............. the single entry point; boots the app, defines routes
+   │
+core/Router.php ....... matches the URL to a "Controller@method"
+   │
+app/Controllers/ ...... the Controller: reads input, validates, calls the model
+   │
+app/Models/Person.php . the Model: the only place that talks to the database,
+   │                     building its SQL from config/Schema.php
+core/Database.php ..... the single shared PDO connection
+   │
+app/Views/ ............ the View: renders HTML (Tailwind), never touches the DB
 ```
 
-<!-- DOCUMENTATION -->
-The documentation for this framework you can find in the <strong>doc<strong> folder!
+Every file on that path carries comments explaining its job — follow the flow in
+order and you have read the whole framework.
+
+## Installation
+
+You need **PHP 8.1+** and **MySQL or MariaDB**. The easiest way to get both on any
+operating system is [XAMPP](https://www.apachefriends.org/) (or MAMP / a native
+install). The steps below are identical on macOS, Windows and Ubuntu.
+
+### 1. Get the code
+
+```sh
+git clone <your-repository-url> constant-framework
+cd constant-framework
+```
+
+### 2. Configure your database
+
+Open `config/config.php` and set your database credentials. The defaults match a
+fresh XAMPP install (user `root`, empty password), so you often don't need to
+change anything to get started.
+
+### 3. Create the database and table
+
+From the project folder, run the installer once. It reads `config/Schema.php` and
+creates the database and table for you:
+
+```sh
+php bin/setup.php
+```
+
+> Prefer to run the SQL yourself (e.g. in phpMyAdmin)? Print it instead:
+> `php bin/setup.php --sql`
+
+### 4. Run the app
+
+Use PHP's built-in web server — no Apache configuration required, and it works the
+same on every OS:
+
+```sh
+php -S localhost:8000
+```
+
+Then open **http://localhost:8000** in your browser.
+
+<details>
+<summary>Alternative: running under Apache / XAMPP</summary>
+
+Place the project in your web root (`htdocs`) and open
+`http://localhost/constant-framework/`. The framework detects the sub-folder
+automatically — there are no hardcoded paths or IP addresses anywhere.
+</details>
+
+## Using the app
+
+The home page lists all people and is your full CRUD console:
+
+- **Add person** opens a modal form.
+- **Edit** and **Delete** on each row open their own modals.
+
+There are no separate pages or redirects to fill in a form — everything happens in
+place. Input is validated in the browser (instant feedback) and again on the
+server (the authoritative check) before it reaches the database.
+
+## How to extend it for your own project
+
+Want to store *products* instead of *people*? You mostly edit one file.
+
+1. **Change the schema** — edit `config/Schema.php`: set `TABLE`, and list your
+   fields (label, input type, `required`, `max`, `unique`) in `FIELDS`.
+2. **Apply it** — run `php bin/setup.php` to (re)create the table.
+3. **Add another entity** — copy `app/Models/Person.php` and
+   `app/Controllers/PersonController.php`, register the new routes in `index.php`,
+   and add a view under `app/Views/`.
+
+The model, forms, table and validation all follow the schema automatically, so
+step 1 usually covers a rename or a field change end to end.
+
+## Project structure
+
+```
+constant-framework/
+├── index.php               Front controller + route table
+├── .htaccess               Sends every request to index.php
+├── config/
+│   ├── config.php          ▸ SINGLE SOURCE OF TRUTH: database connection
+│   └── Schema.php          ▸ SINGLE SOURCE OF TRUTH: table, columns, rules
+├── core/
+│   ├── bootstrap.php       Loads everything in order
+│   ├── Router.php          URL → Controller@method
+│   ├── Database.php        The one shared PDO connection
+│   ├── Validator.php       Server-side validation from the Schema
+│   └── helpers.php         e(), view(), redirect(), flash(), base_url() …
+├── app/
+│   ├── Controllers/        Coordinates a request (no SQL, no HTML)
+│   ├── Models/             Talks to the database (no HTML)
+│   └── Views/              Renders HTML with Tailwind (no SQL)
+├── public/js/app.js        Modal behaviour (no build step)
+├── assets/logo.svg         Original CONSTANT Framework logo
+└── bin/setup.php           Creates the database from the Schema
+```
+
+## Styling
+
+All styling is **Tailwind CSS** via the Play CDN — there is no build step, nothing
+to `npm install`, and it works identically on every OS. The framework is
+**dark-mode only**. This keeps the scaffold beginner-friendly: open a view and the
+styles are right there in the markup, with no separate stylesheet to trace. (For a
+production app with heavy traffic you may later swap the CDN for the Tailwind CLI
+build; the markup stays the same.)

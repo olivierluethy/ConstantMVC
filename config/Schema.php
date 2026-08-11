@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Data schema
+ * ConstantMVC — Data schema
  * =============================================================================
  *
  * SINGLE SOURCE OF TRUTH #2: the TABLE and its COLUMNS.

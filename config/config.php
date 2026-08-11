@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Application configuration
+ * ConstantMVC — Application configuration
  * =============================================================================
  *
  * SINGLE SOURCE OF TRUTH #1: the database CONNECTION.

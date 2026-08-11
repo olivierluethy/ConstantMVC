@@ -1,6 +1,6 @@
-# CONSTANT Framework — Refactor & Modernization Report
+# ConstantMVC — Refactor & Modernization Report
 
-This document summarizes the overhaul of the CONSTANT Framework in plain language:
+This document summarizes the overhaul of ConstantMVC in plain language:
 **what changed, why it was changed, and why it matters** for the framework's two
 goals — letting a developer start a database-backed app fast, and letting a
 newcomer learn PHP MVC just by reading the code.

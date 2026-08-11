@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Database installer
+ * ConstantMVC — Database installer
  * =============================================================================
  *
  * Run this once from the project root to create the database and its table:

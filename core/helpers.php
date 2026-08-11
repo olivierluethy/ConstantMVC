@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Small helper functions
+ * ConstantMVC — Small helper functions
  * =============================================================================
  *
  * A handful of tiny functions used throughout the views and controllers. They
@@ -23,14 +23,14 @@ function e(?string $value): string
 /**
  * Build a URL relative to wherever the app is installed. This is why the
  * framework works whether it lives at http://localhost/ or
- * http://localhost/Constant_Framework/ — no hardcoded paths or IP addresses.
+ * http://localhost/ConstantMVC/ — no hardcoded paths or IP addresses.
  *
  *   header('Location: ' . base_url());          // back to the list
  *   <base href="<?= base_url() ?>">              // makes every relative link resolve
  */
 function base_url(string $path = ''): string
 {
-    // The folder index.php is served from, e.g. "" or "/Constant_Framework".
+    // The folder index.php is served from, e.g. "" or "/ConstantMVC".
     $dir = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
     return $dir . '/' . ltrim($path, '/');
 }

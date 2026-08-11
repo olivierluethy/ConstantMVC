@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Bootstrap
+ * ConstantMVC — Bootstrap
  * =============================================================================
  *
  * The very first thing index.php loads. It wires the framework together by

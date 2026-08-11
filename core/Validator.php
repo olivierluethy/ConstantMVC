@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Server-side validator
+ * ConstantMVC — Server-side validator
  * =============================================================================
  *
  * Client-side validation (in the browser) is a convenience — it can be bypassed.

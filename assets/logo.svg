@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  CONSTANT Framework — original logo.
+  ConstantMVC — original logo.
   An open "C" (the framework) crossed by a horizontal "constant line" — the
   recurring motif of the design: something that stays the same, a single source
   of truth. Self-contained SVG, tuned for dark backgrounds.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="CONSTANT Framework logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="ConstantMVC logo">
   <defs>
     <linearGradient id="cf-grad" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#38BDF8"/>

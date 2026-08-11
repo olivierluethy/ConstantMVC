@@ -1,5 +1,5 @@
 /**
- * CONSTANT Framework — front-end behaviour
+ * ConstantMVC — front-end behaviour
  * ----------------------------------------
  * Small, dependency-free JavaScript that powers the in-page CRUD modals. There
  * is no build step and no framework here on purpose — it stays readable.
@@ -86,5 +86,5 @@
 
     // --- Footer year --------------------------------------------------------
     const year = document.getElementById('year');
-    if (year) year.textContent = '© ' + new Date().getFullYear() + ' CONSTANT Framework';
+    if (year) year.textContent = '© ' + new Date().getFullYear() + ' ConstantMVC';
 })();

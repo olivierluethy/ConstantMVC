@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="CONSTANT Framework" width="72" height="72">
+  <img src="assets/logo.svg" alt="ConstantMVC" width="72" height="72">
 </p>
 
-<h1 align="center">CONSTANT Framework</h1>
+<h1 align="center">ConstantMVC</h1>
 
 <p align="center">
   A tiny PHP MVC framework with Add / Edit / Delete built in — so you can start a
@@ -30,7 +30,7 @@ same way: rebuilding the same scaffolding from scratch — routing, a database
 connection, a table with add/edit/delete — before any real work could begin. That
 was slow and repetitive.
 
-CONSTANT Framework is the answer: **copy it, point it at a database, and start
+ConstantMVC is the answer: **copy it, point it at a database, and start
 building.** The add/edit/delete system is already wired up. It doubles as a
 teaching scaffold — the code is written to be read, so a newcomer can open it and
 see exactly how the Model, View and Controller pieces connect.
@@ -80,8 +80,8 @@ install). The steps below are identical on macOS, Windows and Ubuntu.
 ### 1. Get the code
 
 ```sh
-git clone <your-repository-url> constant-framework
-cd constant-framework
+git clone <your-repository-url> constantmvc
+cd constantmvc
 ```
 
 ### 2. Configure your database
@@ -117,7 +117,7 @@ Then open **http://localhost:8000** in your browser.
 <summary>Alternative: running under Apache / XAMPP</summary>
 
 Place the project in your web root (`htdocs`) and open
-`http://localhost/constant-framework/`. The framework detects the sub-folder
+`http://localhost/constantmvc/`. The framework detects the sub-folder
 automatically — there are no hardcoded paths or IP addresses anywhere.
 </details>
 
@@ -149,7 +149,7 @@ step 1 usually covers a rename or a field change end to end.
 ## Project structure
 
 ```
-constant-framework/
+constantmvc/
 ├── index.php               Front controller + route table
 ├── .htaccess               Sends every request to index.php
 ├── config/
@@ -166,7 +166,7 @@ constant-framework/
 │   ├── Models/             Talks to the database (no HTML)
 │   └── Views/              Renders HTML with Tailwind (no SQL)
 ├── public/js/app.js        Modal behaviour (no build step)
-├── assets/logo.svg         Original CONSTANT Framework logo
+├── assets/logo.svg         Original ConstantMVC logo
 └── bin/setup.php           Creates the database from the Schema
 ```
 

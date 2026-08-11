@@ -9,7 +9,7 @@
             <img src="assets/logo.svg" alt="" width="36" height="36" class="h-9 w-9">
             <span class="flex flex-col leading-none">
                 <span class="font-display text-lg font-bold tracking-tight text-white">CONSTANT</span>
-                <span class="font-mono text-[10px] uppercase tracking-[0.35em] text-sky-400">framework</span>
+                <span class="font-mono text-[10px] uppercase tracking-[0.55em] text-sky-400">MVC</span>
             </span>
         </a>
         <span class="hidden font-mono text-xs uppercase tracking-widest text-slate-500 sm:block">

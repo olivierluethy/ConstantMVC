@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONSTANT Framework</title>
+    <title>ConstantMVC</title>
 
     <!-- Make every relative link/asset resolve no matter where the app is installed. -->
     <base href="<?= base_url() ?>">

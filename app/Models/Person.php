@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Person model (the "M" in MVC)
+ * ConstantMVC — Person model (the "M" in MVC)
  * =============================================================================
  *
  * The model is the ONLY layer that talks to the database. Controllers ask the

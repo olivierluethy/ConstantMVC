@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Person controller (the "C" in MVC)
+ * ConstantMVC — Person controller (the "C" in MVC)
  * =============================================================================
  *
  * The controller is the coordinator. For each route it:

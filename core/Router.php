@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Router
+ * ConstantMVC — Router
  * =============================================================================
  *
  * The router is the traffic controller of the MVC flow. Every request has

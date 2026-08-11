@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Front controller (the single entry point)
+ * ConstantMVC — Front controller (the single entry point)
  * =============================================================================
  *
  * Thanks to .htaccess, EVERY request to the app arrives here. This file has

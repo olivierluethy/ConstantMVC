@@ -1,7 +1,7 @@
 <?php
 /**
  * =============================================================================
- * CONSTANT Framework — Database connector
+ * ConstantMVC — Database connector
  * =============================================================================
  *
  * This is the ONLY place in the whole framework that opens a PDO connection.
